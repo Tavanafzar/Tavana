@@ -215,20 +215,20 @@ Tavana's built-in command data is designed to work locally on the user's compute
 Tavana is designed around a separation between the user interface and the application's core logic.
 
 ```
-                                           Tavana
-                                                │
-               ┌─────────────┴─────────────┐
-               │                                                                │
-              UI                                                        Core Engine
-               │                                                                │
-               │                                 ┌────────────┼────────────┐
-               │                                 │                             │                            │
-               │                             Search                 Commands             Calculator
-               │                                  │                            │                             │
-               └──────────────┴────────────┴────────────┘
-                                                                                 │
-                                                                       Local Database
-                                                                             SQLite
+                         Tavana
+                            │
+              ┌─────────────┴─────────────┐
+              │                           │
+              Ui                      Core engine
+              │                           │
+              │              ┌────────────┼────────────┐
+              │              │            │            │
+              │           Search       Commands    Calculator
+              │              │            │            │
+              └──────────────┴────────────┴────────────┘
+                             │
+                       Local Database
+                           SQLite
 ```
 
 This approach makes the project easier to maintain and provides a foundation for future features.
