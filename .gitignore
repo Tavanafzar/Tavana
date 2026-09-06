@@ -1,5 +1,5 @@
 #folders and files i dont want to share or not necessary
-data/program_icons
+data/
 output/
 requirements.txt
 # Byte-compiled / optimized / DLL files
