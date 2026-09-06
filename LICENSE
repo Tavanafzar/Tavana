@@ -1,0 +1,234 @@
+TAVANA SOURCE-AVAILABLE PROPRIETARY LICENSE
+Copyright © 2026 Tavanafzar. All Rights Reserved.
+
+1. OWNERSHIP
+
+The Tavana software, including but not limited to its source code,
+object code, executable files, architecture, algorithms, designs,
+interfaces, documentation, assets, graphics, some icons, and related
+materials ("Software"), is the intellectual property of Tavanafzar.
+
+All rights not expressly granted by this License are reserved by
+Tavanafzar.
+
+Nothing in this License transfers ownership of the Software or any
+portion of its source code to any other person or entity.
+
+2. LIMITED PERMISSION
+
+Subject to the terms of this License, Tavanafzar grants you a limited,
+non-exclusive, non-transferable, non-sublicensable permission to:
+
+- view the source code;
+- copy the source code for personal, educational, research, and
+  evaluation purposes;
+- modify the source code for personal, educational, research, and
+  evaluation purposes;
+- create private modified versions for your own use.
+
+This permission does not constitute a transfer of ownership.
+
+3. PROHIBITED COMMERCIAL USE
+
+You may NOT sell, offer for sale, license, sublicense, rent, lease,
+assign, distribute for payment, monetize, or otherwise commercially
+exploit:
+
+(a) the Tavana source code;
+(b) any substantial portion of the Tavana source code;
+(c) the original Tavana software;
+(d) a modified version of Tavana;
+(e) a derivative work substantially based on Tavana;
+(f) any product whose primary purpose is to provide or redistribute
+    Tavana or its source code.
+
+This prohibition applies whether the transaction is direct or
+indirect, paid or unpaid as part of another commercial transaction.
+
+4. NO SALE OF SOURCE CODE
+
+You may not sell the Tavana source code or any substantial portion of
+it as source code, libraries, templates, components, packages,
+repositories, downloads, courses, products, or services.
+
+You may not offer the source code through a marketplace, subscription,
+software repository, code marketplace, asset store, consulting service,
+or any other commercial distribution channel.
+
+You may not claim that you are the original author or owner of Tavana
+source code.
+
+5. NO COMMERCIAL DISTRIBUTION OF TAVANA
+
+You may not distribute, publish, package, bundle, sublicense, or sell
+Tavana or a modified version of Tavana for commercial purposes.
+
+This includes, without limitation:
+
+- selling executable builds;
+- selling installers;
+- selling modified builds;
+- charging subscription fees for access to Tavana;
+- including Tavana in a paid software package;
+- offering Tavana as a paid service;
+- using Tavana as the basis of a competing commercial product;
+- distributing Tavana through a paid marketplace;
+- monetizing access to Tavana or a derivative version.
+
+6. MODIFICATIONS
+
+You may create modified versions of the Software for personal,
+educational, research, and evaluation purposes.
+
+However, you may not commercially distribute or sell such modified
+versions without prior written permission from Tavanafzar.
+
+A modified version must not be represented as an official version of
+Tavana.
+
+7. ATTRIBUTION
+
+Any permitted copy or modified version of the Software must retain all
+existing copyright notices, attribution notices, license notices, and
+references to Tavanafzar.
+
+The following attribution must remain clearly visible:
+
+"Original source code by Tavanafzar — Tavana"
+
+and, where applicable:
+
+"Copyright © 2026 Tavanafzar. All Rights Reserved."
+
+You may not remove, obscure, alter, or replace these notices.
+
+8. NO FALSE CLAIM OF OWNERSHIP
+
+You may not claim, imply, or represent that you are the original
+author, creator, copyright holder, or owner of Tavana or its original
+source code.
+
+You may describe your own modifications as your own work, provided
+that you clearly identify Tavanafzar as the original author of the
+Tavana source code.
+
+9. DERIVATIVE WORKS
+
+A derivative work is any software, modification, adaptation, fork,
+reimplementation, port, translation, or other work that incorporates
+or is substantially based upon the Tavana source code.
+
+Creating a derivative work does not transfer ownership of the original
+Tavana code to its creator.
+
+All original Tavana code remains the intellectual property of
+Tavanafzar.
+
+10. TRADEMARKS AND BRANDING
+
+"Tavana", "Tavanafzar", associated logos, names, icons, and branding
+may not be used in a manner that falsely suggests endorsement,
+partnership, sponsorship, or official affiliation with Tavanafzar.
+
+You may not present a modified or derivative version as an official
+Tavana product.
+
+11. REDISTRIBUTION
+
+Redistribution of the source code is permitted only for
+non-commercial personal, educational, research, or evaluation
+purposes and only if:
+
+(a) this License is included;
+(b) all copyright notices are retained;
+(c) attribution to Tavanafzar is retained;
+(d) no fee is charged specifically for the source code;
+(e) the recipient is informed that the Software is proprietary;
+(f) the redistributed copy is not presented as an official Tavanafzar
+    release.
+
+12. COMMERCIAL LICENSE
+
+Any commercial use, commercial distribution, commercial modification,
+commercial integration, sale, licensing, or monetization of the
+Software requires a separate written commercial license from
+Tavanafzar.
+
+No commercial rights are granted by this License unless explicitly
+provided in writing by Tavanafzar.
+
+13. NO SUBLICENSING
+
+You may not sublicense, transfer, assign, or grant any third party
+rights that are greater than the rights granted to you under this
+License.
+
+14. NO REMOVAL OF COPYRIGHT
+
+You may not remove or modify copyright notices, authorship notices,
+license notices, attribution requirements, or ownership statements
+contained in the Software.
+
+15. NO RESELLING
+
+You may not resell Tavana, its source code, modified versions, forks,
+components, or substantial portions of its source code.
+
+This restriction applies regardless of whether the Software has been
+modified.
+
+16. NO COMPETING PRODUCT BASED ON THE SOURCE
+
+You may not use the Tavana source code as the foundation for creating,
+marketing, distributing, or selling a competing commercial software
+product.
+
+17. CONTRIBUTIONS
+
+Unless otherwise agreed in writing, submitting a contribution to the
+Tavana project does not grant the contributor ownership of Tavanafzar's
+existing source code.
+
+Contributors retain ownership of their original contributions to the
+extent required by applicable law, while the original Tavana code
+remains the property of Tavanafzar.
+
+18. TERMINATION
+
+Any rights granted under this License automatically terminate if you
+violate any of its terms.
+
+Upon termination, you must cease all use, copying, modification, and
+distribution of the Software, except where applicable law requires
+otherwise.
+
+19. DISCLAIMER OF WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR
+NON-INFRINGEMENT.
+
+20. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, TAVANAFZAR SHALL
+NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+CONSEQUENTIAL, OR OTHER DAMAGES ARISING FROM THE USE OR INABILITY TO
+USE THE SOFTWARE.
+
+21. RESERVATION OF RIGHTS
+
+All rights not expressly granted under this License are reserved by
+Tavanafzar.
+
+No permission should be inferred merely because a particular use is
+not explicitly prohibited.
+
+22. PERMISSION REQUESTS
+
+Requests for commercial licensing, redistribution rights, commercial
+modification rights, or other permissions not granted by this License
+must be obtained in writing from Tavanafzar.
+
+Copyright © 2026 Tavanafzar.
+All Rights Reserved.
