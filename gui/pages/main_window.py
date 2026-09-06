@@ -462,14 +462,14 @@ class MainWindow(QMainWindow):
             return
 
         if text:
-            self.ui.searchAreaLayout.setContentsMargins(10, 0, 6, 0)
+            self.ui.searchAreaLayout.setContentsMargins(12, 0, 8, 0)
             self.ui.input_mode_frame.setVisible(True)
             self.ui.input_mode.setVisible(True)
             self.ui.input_mode_text.setVisible(True)
             self.ui.submitBtn.setVisible(False)
 
         else:
-            self.ui.searchAreaLayout.setContentsMargins(10, 0, 10, 0)
+            self.ui.searchAreaLayout.setContentsMargins(12, 0, 12, 0)
             
             self.ui.input_mode_frame.setVisible(False)
             self.ui.input_mode.setVisible(False)
@@ -559,7 +559,7 @@ class MainWindow(QMainWindow):
                 ))
             )
             self.ui.input_mode_text.setText("جست وجو در اینترنت")
-        set_font(self.ui.input_mode, "Bold")
+       
 
     def reset_box(self):
         """نوار جستجو را خالی می‌کند، عناصر را با انیمیشن پنهان و سپس پنجره را می‌بندد."""
@@ -585,8 +585,7 @@ class MainWindow(QMainWindow):
             """فونت، تم و پیشنهادهای خودکار را با تم جدید بازسازی می‌کند و پنجره را دوباره نمایان می‌کند."""
             set_font(self, "Bold")
             ThemeLoader.apply_theme(self, self.ui)
-            # Re-apply the custom font after QSS repolish so the family is never lost.
-       # set_font(self.ui.input_mode_text, "Bold", 10)
+       
             self._setup_autocomplete()
             self.popup.update_theme()
             window_fade_in(self)

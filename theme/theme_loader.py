@@ -204,8 +204,7 @@ class ThemeLoader:
         }}
         #input_mode {{
             background:{c['input_mode_bg']};
-            border-radius: 20px;
-            
+            border-radius: 18px;
             padding-left:15px;
                 
 
@@ -351,7 +350,7 @@ QRadioButton{{
             
             #input_mode {{
                 background:{c['input_mode_bg']};
-                border-radius: 20px;
+                border-radius: 18px;
                 padding-left:15px;
             }}
         #input_mode_text{{

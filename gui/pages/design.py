@@ -62,7 +62,7 @@ class Ui_MainWindow:
         self.mainLayout = QVBoxLayout(self.centralwidget)
         self.mainLayout.setSpacing(0)
         self.mainLayout.setObjectName("verticalLayout")
-        self.mainLayout.setContentsMargins(0, 150, 0, 0)
+        self.mainLayout.setContentsMargins(0, 190, 0, 0)
 
         self.mainFrame = QFrame()
         self.mainFrame.setObjectName("mainFrame")
@@ -125,7 +125,7 @@ class Ui_MainWindow:
         self.searchAreaLayout = QGridLayout(self.searchFrame)
         self.searchAreaLayout.setSpacing(0)
         self.searchAreaLayout.setObjectName("horizontalLayout_2")
-        self.searchAreaLayout.setContentsMargins(10, 0, 10, 0)
+        self.searchAreaLayout.setContentsMargins(12, 0, 12, 0)
         self.searchAreaLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         self._setup_search_buttons()
@@ -149,7 +149,7 @@ class Ui_MainWindow:
         self.input_mode_frame = QFrame(self.searchFrame)
         self.input_mode_frame.setObjectName("input_mode")
         self.input_mode_frame.setVisible(False)
-        self.input_mode_frame.setMaximumHeight(40)
+        self.input_mode_frame.setMaximumHeight(36)
 
         self.input_mode = QPushButton()
         self.input_mode.setFixedSize(37, 37)
@@ -163,6 +163,7 @@ class Ui_MainWindow:
         self.input_mode_text.setObjectName("input_mode_text")
         self.input_mode_text.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         #self.input_mode_text.setVisible(False)
+        set_font(self.input_mode_text, "Bold", 10)
         
         self.submitBtn = QPushButton()
         self.submitBtn.setObjectName("submitBtn")
