@@ -4,12 +4,14 @@
 
 import ctypes
 import os
+import subprocess
+import sys
 import threading
 import webbrowser
 
 from PySide6.QtCore import QFileInfo, QSize, Qt, QTimer, Signal
 from PySide6.QtGui import QIcon, QStandardItem, QStandardItemModel
-from PySide6.QtWidgets import QCompleter, QFileIconProvider, QListView, QMainWindow
+from PySide6.QtWidgets import QApplication, QCompleter, QFileIconProvider, QListView, QMainWindow
 
 from core.calculations.math_engine import evaluate_math_expression, is_math_expression
 from core.commands.commands import load_tavana_commands, load_windows_commands
@@ -139,7 +141,6 @@ class MainWindow(QMainWindow):
         enable_blur(hwnd)
 
         self.popup = PopupWidget(self)
-        self.popup.update_theme()
 
         setup_ui_hooks(self)
 
@@ -161,7 +162,8 @@ class MainWindow(QMainWindow):
     def _setup_animations(self):
         """تم فعلی را روی رابط کاربری اعمال می‌کند."""
         ThemeLoader.apply_theme(self, self.ui)
-
+        self.popup.update_theme() 
+        
     def _setup_signals(self):
         """سیگنال‌های نمایش/ارسال/تغییر تم/تغییر متن را به متدهای مربوطه متصل می‌کند."""
         self.toggle_signal.connect(self.toggle_visibility)
@@ -573,24 +575,13 @@ class MainWindow(QMainWindow):
         """تم را بین روشن و تیره جابه‌جا می‌کند و با انیمیشن محو، رابط کاربری را با تم جدید بازسازی می‌کند."""
         self.is_dark_theme = not self.is_dark_theme
         print(f"Theme changed: {'Dark' if self.is_dark_theme else 'Light'}")
+        database.write_app_info(f"{'Dark' if self.is_dark_theme else 'Light'}")
+        QApplication.quit()
+        open_app = sys.executable
+        subprocess.Popen([open_app] + sys.argv)
 
-        # if self.is_dark_theme :
-        #     database.write_app_info("Dark")
-        # else:
-        #     database.write_app_info("Light")
+        sys.exit(0)    
 
-        
-
-        def _apply_theme_and_fade_in():
-            """فونت، تم و پیشنهادهای خودکار را با تم جدید بازسازی می‌کند و پنجره را دوباره نمایان می‌کند."""
-            set_font(self, "Bold")
-            ThemeLoader.apply_theme(self, self.ui)
-       
-            self._setup_autocomplete()
-            self.popup.update_theme()
-            window_fade_in(self)
-
-        window_fade_out(self, callback=_apply_theme_and_fade_in)
 
     def update_suggestions(self, new_text: str | None = None):
         """در صورت وجود new_text، آن را در بالای لیست پیشنهادها قرار می‌دهد؛ در غیر این صورت آیتم‌های جدید تاریخچه را به لیست اضافه می‌کند."""
