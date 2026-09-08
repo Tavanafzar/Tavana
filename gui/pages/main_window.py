@@ -162,13 +162,13 @@ class MainWindow(QMainWindow):
     def _setup_animations(self):
         """تم فعلی را روی رابط کاربری اعمال می‌کند."""
         ThemeLoader.apply_theme(self, self.ui)
-        self.popup.update_theme() 
-        
+        self.popup.update_theme()
+
     def _setup_signals(self):
         """سیگنال‌های نمایش/ارسال/تغییر تم/تغییر متن را به متدهای مربوطه متصل می‌کند."""
         self.toggle_signal.connect(self.toggle_visibility)
         self.submit_signal.connect(self.process_input)
-        
+
         self.ui.logoButton.clicked.connect(self.refresh_theme)
 
         self.ui.searchBox.textChanged.connect(self.custom_text_changed)
@@ -472,13 +472,11 @@ class MainWindow(QMainWindow):
 
         else:
             self.ui.searchAreaLayout.setContentsMargins(12, 0, 12, 0)
-            
+
             self.ui.input_mode_frame.setVisible(False)
             self.ui.input_mode.setVisible(False)
             self.ui.input_mode_text.setVisible(False)
             self.ui.submitBtn.setVisible(True)
-            
-
 
         self.rapidly_recognition_input_type_changed(normalized)
 
@@ -543,7 +541,7 @@ class MainWindow(QMainWindow):
                     "assets", "icons", "shared_icons", "calculator.png"
                 ))
             )
-            self.ui.input_mode_text.setText("ماشین حساب")  
+            self.ui.input_mode_text.setText("ماشین حساب")
         # First character is uppercase → Google
         elif text[0].isupper():
             self.ui.input_mode.setIcon(
@@ -561,7 +559,6 @@ class MainWindow(QMainWindow):
                 ))
             )
             self.ui.input_mode_text.setText("جست وجو در اینترنت")
-       
 
     def reset_box(self):
         """نوار جستجو را خالی می‌کند، عناصر را با انیمیشن پنهان و سپس پنجره را می‌بندد."""
@@ -580,8 +577,7 @@ class MainWindow(QMainWindow):
         open_app = sys.executable
         subprocess.Popen([open_app] + sys.argv)
 
-        sys.exit(0)    
-
+        sys.exit(0)
 
     def update_suggestions(self, new_text: str | None = None):
         """در صورت وجود new_text، آن را در بالای لیست پیشنهادها قرار می‌دهد؛ در غیر این صورت آیتم‌های جدید تاریخچه را به لیست اضافه می‌کند."""

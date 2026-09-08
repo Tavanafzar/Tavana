@@ -1,5 +1,6 @@
 #folders and files i dont want to share or not necessary
 data/
+clean_database/
 output/
 requirements.txt
 # Byte-compiled / optimized / DLL files

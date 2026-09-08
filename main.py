@@ -21,8 +21,7 @@ def main() -> None:
 
     theme_manager = ThemeManager()
     appearance = theme_manager.set_application_appearance()
-    
-    
+
     app = QApplication(sys.argv)
     app.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
 
@@ -42,7 +41,7 @@ def setup_tray_icon(app, window, icon_path, is_dark):
     """آیکون و منوی تری سیستم (نمایش/خروج) را می‌سازد و برمی‌گرداند."""
 
     tray_icon = QSystemTrayIcon(
-        QIcon(resource_path("assets", "icons","shared_icons", "tavana.png")))
+        QIcon(resource_path("assets", "icons", "shared_icons", "tavana.png")))
     tray_icon.setToolTip("Tavana")
 
     tray_menu = QMenu()
