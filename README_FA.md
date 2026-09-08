@@ -2,10 +2,10 @@
 
 <img src="assets/icons/shared_icons/tavana.png" width="120" alt="Tavana logo" />
 
-# Tavana
+# توانا
 
-**Smart Windows Assistant**
-A fast and intelligent command launcher for Windows 10 and Windows 11.
+**دستیار هوشمند ویندوز**
+یک راه‌انداز سریع و هوشمند فرمان، برای ویندوز ۱۰ و ویندوز ۱۱.
 
 ![Version](https://img.shields.io/badge/Version-v1.0.0-1f6feb)
 ![Python](https://img.shields.io/badge/Python-3.14.7-d4a72c)
