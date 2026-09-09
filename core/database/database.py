@@ -11,7 +11,7 @@ from core.paths.paths import app_path, resource_path
 
 DB_PATH = app_path("data", "app.db")
 _LEGACY_DB_PATH = resource_path("data", "app.db")
-LEGACY_JSON_PATH = app_path("data", "data.json")
+#LEGACY_JSON_PATH = app_path("data", "data.json")
 DEFAULT_HISTORY_LIMIT = 2000
 
 DEFAULT_ANIMATION_SPEEDS = [200, 150]
@@ -200,7 +200,7 @@ def init_db() -> None:
             conn.close()
 
         _initialized = True
-        _migrate_from_legacy_json()
+        # _migrate_from_legacy_json()
 
 
 def _ensure_tavana_settings_schema(conn) -> None:
@@ -219,68 +219,68 @@ def _ensure_tavana_settings_schema(conn) -> None:
         )
 
 
-def _migrate_from_legacy_json() -> None:
-    """در صورت وجود data.json قدیمی و خالی‌بودن دیتابیس، یک‌بار داده‌ها را منتقل می‌کند."""
-    if not os.path.exists(LEGACY_JSON_PATH):
-        return
+# def _migrate_from_legacy_json() -> None:
+#     """در صورت وجود data.json قدیمی و خالی‌بودن دیتابیس، یک‌بار داده‌ها را منتقل می‌کند."""
+#     # if not os.path.exists(LEGACY_JSON_PATH):
+#     #     return
 
-    with _get_conn() as conn:
-        if conn.execute("SELECT 1 FROM app_info LIMIT 1").fetchone():
-            return
+#     with _get_conn() as conn:
+#         if conn.execute("SELECT 1 FROM app_info LIMIT 1").fetchone():
+#             return
 
-        try:
-            with open(LEGACY_JSON_PATH, "r", encoding="utf-8") as f:
-                legacy = json.load(f)
-        except (json.JSONDecodeError, OSError) as e:
-            print(f"Error reading legacy data.json during migration: {e}")
-            return
+#         # try:
+#         #     with open(LEGACY_JSON_PATH, "r", encoding="utf-8") as f:
+#         #         legacy = json.load(f)
+#         # except (json.JSONDecodeError, OSError) as e:
+#         #     print(f"Error reading legacy data.json during migration: {e}")
+#         #     return
 
-        conn.executemany(
-            "INSERT OR REPLACE INTO app_info (key, value) VALUES (?, ?)",
-            list(legacy.get("App info", {}).items()),
-        )
-        conn.executemany(
-            "INSERT OR REPLACE INTO windows_command (keyword, action) VALUES (?, ?)",
-            list(legacy.get("Commands", {}).items()),
-        )
-        conn.executemany(
-            "INSERT OR REPLACE INTO directories (filename, path) VALUES (?, ?)",
-            list(legacy.get("Directories", {}).items()),
-        )
+#         # conn.executemany(
+#         #     "INSERT OR REPLACE INTO app_info (key, value) VALUES (?, ?)",
+#         #     list(legacy.get("App info", {}).items()),
+#         # )
+#         # conn.executemany(
+#         #     "INSERT OR REPLACE INTO windows_command (keyword, action) VALUES (?, ?)",
+#         #     list(legacy.get("Commands", {}).items()),
+#         # )
+#         # conn.executemany(
+#         #     "INSERT OR REPLACE INTO directories (filename, path) VALUES (?, ?)",
+#         #     list(legacy.get("Directories", {}).items()),
+#         # )
 
-        now = time.time()
-        history_rows = []
-        for index, item in enumerate(legacy.get("TypeHistories", [])):
-            if not isinstance(item, list) or not item:
-                continue
-            text = item[0]
-            light_icon = item[1] if len(item) > 1 else _DEFAULT_LIGHT_ICON
-            dark_icon = item[2] if len(item) > 2 else _DEFAULT_DARK_ICON
-            history_rows.append((text, light_icon, dark_icon, now - index))
-        conn.executemany(
-            "INSERT OR IGNORE INTO type_history (text, light_icon, dark_icon, created_at) "
-            "VALUES (?, ?, ?, ?)",
-            history_rows,
-        )
+#         now = time.time()
+#         history_rows = []
+#         for index, item in enumerate(legacy.get("TypeHistories", [])):
+#             if not isinstance(item, list) or not item:
+#                 continue
+#             text = item[0]
+#             light_icon = item[1] if len(item) > 1 else _DEFAULT_LIGHT_ICON
+#             dark_icon = item[2] if len(item) > 2 else _DEFAULT_DARK_ICON
+#             history_rows.append((text, light_icon, dark_icon, now - index))
+#         conn.executemany(
+#             "INSERT OR IGNORE INTO type_history (text, light_icon, dark_icon, created_at) "
+#             "VALUES (?, ?, ?, ?)",
+#             history_rows,
+#         )
 
-        shortcut_rows = []
-        for order, item in enumerate(legacy.get("Shortcuts", [])):
-            shortcut_rows.append((
-                order,
-                item[0],
-                item[1],
-                item[2],
-                item[3] if len(item) > 3 else "",
-                item[4] if len(item) > 4 else "",
-            ))
-        conn.executemany(
-            "INSERT OR REPLACE INTO shortcuts "
-            "(sort_order, id_name, width, height, text, tooltip) VALUES (?, ?, ?, ?, ?, ?)",
-            shortcut_rows,
-        )
+#         shortcut_rows = []
+#         for order, item in enumerate(legacy.get("Shortcuts", [])):
+#             shortcut_rows.append((
+#                 order,
+#                 item[0],
+#                 item[1],
+#                 item[2],
+#                 item[3] if len(item) > 3 else "",
+#                 item[4] if len(item) > 4 else "",
+#             ))
+#         conn.executemany(
+#             "INSERT OR REPLACE INTO shortcuts "
+#             "(sort_order, id_name, width, height, text, tooltip) VALUES (?, ?, ?, ?, ?, ?)",
+#             shortcut_rows,
+#         )
 
-        conn.commit()
-        print("✅ داده‌ها از data.json به data.db منتقل شدند")
+#         conn.commit()
+#         print("✅ داده‌ها از data.json به data.db منتقل شدند")
 
 
 def get_app_info() -> dict[str, str]:

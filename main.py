@@ -2,39 +2,57 @@
 
 import sys
 
-from PySide6.QtGui import QActionGroup, QIcon, Qt
+from PySide6.QtGui import QIcon, Qt
 from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 
 from core.database import database
 from core.paths.paths import resource_path
+from core.single_instance.single_instance_manager import SingleInstanceGuard
 from theme.system_theme import ThemeManager
 from gui.pages.main_window import MainWindow
-from gui.pages.popup import PopupWidget
 from handlers.font_handler import set_font
 from theme.theme_loader import ThemeLoader
+from core.hotkeys.hotkey_manager import HotkeyManager
 
 
 def main() -> None:
     """دیتابیس، تم سیستم، پنجره‌ی اصلی و آیکون تری سیستم را راه‌اندازی و برنامه را اجرا می‌کند."""
+
+    # QLocalSocket/QLocalServer برای کار درست نیاز به یک QCoreApplication دارند، پس
+    # باید همین ابتدا ساخته شود؛ اما پیش از هر مقداردهی سنگین (دیتابیس، تم و ...)
+    # بررسی می‌کنیم که آیا نمونه‌ی دیگری از برنامه در حال اجراست.
+    app = QApplication(sys.argv)
+    app.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+
+    instance_guard = SingleInstanceGuard()
+    if instance_guard.try_acquire():
+        # نمونه‌ای از قبل در حال اجراست؛ به آن پیام دادیم که خودش را نشان دهد،
+        # این نمونه‌ی جدید همین‌جا و بدون هیچ مقداردهی اضافه‌ای خارج می‌شود.
+        sys.exit(0)
 
     database.init_db()
 
     theme_manager = ThemeManager()
     appearance = theme_manager.set_application_appearance()
 
-    app = QApplication(sys.argv)
-    app.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
-
     set_font(app, "Bold")
     window = MainWindow(appearance)
     window.setWindowTitle("توانا")
+
+    instance_guard.show_requested.connect(window.toggle_visibility)
 
     icon_path = theme_manager.get_icon_path(appearance)
     window.setWindowIcon(QIcon(icon_path))
 
     tray_icon = setup_tray_icon(app, window, icon_path, appearance)
-
-    sys.exit(app.exec())
+    register_hotkeys = HotkeyManager(window)
+    register_hotkeys.hotkey_listener.start()
+    
+    register_hotkeys.return_the_answer_hotkey()
+    
+    exit_code = app.exec()
+    register_hotkeys.hotkey_listener.stop()
+    sys.exit(exit_code)
 
 
 def setup_tray_icon(app, window, icon_path, is_dark):

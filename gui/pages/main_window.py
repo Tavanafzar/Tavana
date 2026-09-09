@@ -30,7 +30,7 @@ from handlers.exec_handler import (
 )
 from handlers.font_handler import set_font
 from handlers.history_handler import HistoryManager
-from handlers.hotkeys import register_hotkeys
+from core.hotkeys.hotkey_manager import HotkeyManager
 from handlers.url_handler import is_url, open_url
 from theme.blur_window import enable_blur
 from theme.theme_loader import ThemeLoader
@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
 
     PROGRAM_ICONS_DIR = PROGRAM_ICONS_DIR
     DEFAULT_PROGRAM_ICON = resource_path(
-        "assets", "icons", "light", "searchInDir.png")
+        "assets", "icons", "shared_icons", "searchInDir.png")
 
     def __init__(self, is_dark_theme: bool):
         """رابط کاربری، دستورات، انیمیشن‌ها و داده‌های اولیه را می‌سازد و اسکن پس‌زمینه‌ی برنامه‌ها را شروع می‌کند."""
@@ -175,7 +175,6 @@ class MainWindow(QMainWindow):
 
     def _load_initial_data(self):
         """میان‌برهای صفحه‌کلید را ثبت و لیست پیشنهادهای خودکار را بارگذاری می‌کند."""
-        register_hotkeys(self)
         self._setup_autocomplete()
 
     def _setup_autocomplete(self, force_reload: bool = False):

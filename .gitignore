@@ -7,7 +7,7 @@ requirements.txt
 __pycache__/
 *.py[codz]
 *$py.class
-
+All
 # C extensions
 *.so
 
