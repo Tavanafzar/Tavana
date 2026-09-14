@@ -282,7 +282,7 @@ pywin32
 The easiest way to use Tavana is to download the latest release.
 
 **Latest Release:** [Go to release page](https://github.com/Tavanafzar/Tavana/releases/)
-> Never install the Tavana launcher in the C:/ drive.
+> If you intend to install the program on drive C, make sure to run the installation file with administrator access (Run as administrator).
 
 ### 🗺️ Roadmap
 
