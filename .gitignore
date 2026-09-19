@@ -9,6 +9,8 @@ __pycache__/
 All
 data/clean_database
 data/program_icons
+data/app.db-shm
+data/app.db-wal
 # C extensions
 *.so
 
