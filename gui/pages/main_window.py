@@ -303,6 +303,7 @@ class MainWindow(QMainWindow):
 
     def toggle_visibility(self):
         """پنجره را با انیمیشن نمایش می‌دهد یا پنهان می‌کند و آن را در حالت نمایش، بالاترین پنجره قرار می‌دهد."""
+        focus_count = 0
         try:
             if self.isVisible():
 
@@ -316,7 +317,11 @@ class MainWindow(QMainWindow):
                 self.showFullScreen()
                 self.raise_()
                 self.activateWindow()
-
+                
+                if focus_count ==0:
+                    focus_count+=1
+                else:
+                    self.ui.searchBox.setFocus()
                 hwnd = int(self.winId())
 
                 HWND_TOPMOST = -1
@@ -421,7 +426,7 @@ class MainWindow(QMainWindow):
         """کلیک روی هر دکمه‌ی رادیویی سرویس وب را به بازکردن آدرس همان سرویس متصل می‌کند."""
         urls = [
             "https://www.youtube.com/",
-            "https://gemini.google.com/",
+            "https://chatgpt.com/",
             "https://mail.google.com/",
             "https://translate.google.com/?sl=fa&tl=en&op=translate",
             "https://drive.google.com/"

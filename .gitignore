@@ -1,5 +1,5 @@
 #folders and files i dont want to share or not necessary
-clean_database/
+
 output/
 requirements.txt
 # Byte-compiled / optimized / DLL files
@@ -7,7 +7,8 @@ __pycache__/
 *.py[codz]
 *$py.class
 All
-data/
+data/clean_database
+data/program_icons
 # C extensions
 *.so
 
