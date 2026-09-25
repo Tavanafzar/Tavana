@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (
     QCheckBox
 )
 
-from core.database import database
+from core.database import configuration_db
 from gui.animation.animations import widget_slide_fade_in, widget_slide_fade_out
 from theme.theme_loader import ThemeLoader
 from handlers.font_handler import set_font
@@ -53,7 +53,7 @@ class Ui_MainWindow:
 
     def set_version(self):
         """نسخه‌ی برنامه را از دیتابیس می‌خواند و متن نمایشی آن را برمی‌گرداند."""
-        info = database.get_app_info()
+        info = configuration_db.get_app_info()
         version = info.get("version", "")
         return f"نسخه {version}"
 
@@ -141,6 +141,7 @@ class Ui_MainWindow:
         self.voiceBtn.setObjectName("searchMode")
         self.voiceBtn.setMinimumSize(QSize(40, 40))
         self.voiceBtn.setMaximumSize(QSize(40, 40))
+        self.voiceBtn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.voiceBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.voiceBtn.setFocusPolicy(Qt.FocusPolicy.TabFocus)
         self.voiceBtn.setIconSize(QSize(30, 30))
@@ -253,7 +254,7 @@ class Ui_MainWindow:
     def _add_buttons(self):
         """دکمه‌های میانبر پایین پنجره را بر اساس داده‌ی جدول shortcuts می‌سازد."""
         try:
-            shortcuts = database.get_shortcuts()
+            shortcuts = configuration_db.get_shortcuts()
         except Exception as e:
             print(f"Error loading shortcuts: {e}")
             return
@@ -276,9 +277,11 @@ class Ui_MainWindow:
             else:
                 btn = QRadioButton(text, self.modeFrame)
                 btn.setObjectName(id_name)
+                
                 btn.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
                 btn.setFixedSize(width, height)
                 btn.setCheckable(True)
+                btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
                 btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
                 set_font(btn, "SemiBold")
                 if tooltip:

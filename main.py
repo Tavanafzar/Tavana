@@ -5,7 +5,7 @@ import sys
 from PySide6.QtGui import QIcon, Qt
 from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 
-from core.database import database
+from core.database import configuration_db,directories_db
 from core.paths.paths import resource_path
 from core.single_instance.single_instance_manager import SingleInstanceGuard
 from theme.system_theme import ThemeManager
@@ -30,7 +30,8 @@ def main() -> None:
         # این نمونه‌ی جدید همین‌جا و بدون هیچ مقداردهی اضافه‌ای خارج می‌شود.
         sys.exit(0)
 
-    database.init_db()
+    configuration_db.init_db()
+    directories_db.init_uih_db()
 
     theme_manager = ThemeManager()
     appearance = theme_manager.set_application_appearance()

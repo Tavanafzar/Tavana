@@ -10,7 +10,7 @@ import psutil
 from PySide6.QtCore import QFileInfo, QObject, QThread, Signal
 from PySide6.QtWidgets import QFileIconProvider
 
-from core.database import database
+from core.database import directories_db
 from core.paths.paths import PROGRAM_ICONS_DIR, resource_path
 
 
@@ -102,7 +102,7 @@ class FileFinder(QObject):
     def load_existing_directories(self) -> dict:
         """کش مسیرهای فایل را برمی‌گرداند؛ در صورت نبود، از دیتابیس بار می‌کند."""
         if self._cache is None:
-            self._cache = database.get_directories()
+            self._cache = directories_db.get_directories()
         return self._cache
 
     def save_directories(self, directories: dict) -> None:
@@ -112,7 +112,7 @@ class FileFinder(QObject):
         جدید/تغییریافته کافی است؛ کش حافظه (self._cache) از قبل توسط فراخوان
         به‌روزرسانی شده است.
         """
-        database.save_directories(directories)
+        directories_db.save_directories(directories)
 
     def _search_with_everything(self, filename: str) -> Optional[str]:
         """با استفاده از ابزار es.exe (رابط خط‌فرمان Everything) فایل را جستجو می‌کند."""

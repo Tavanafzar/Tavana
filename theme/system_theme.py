@@ -1,6 +1,6 @@
 """خواندن تم روشن/تیره‌ی سیستم‌عامل و آیکون متناظر برنامه."""
 import winreg
-from core.database.database import get_app_info
+from core.database.configuration_db import get_app_info
 from core.paths.paths import resource_path
 
 

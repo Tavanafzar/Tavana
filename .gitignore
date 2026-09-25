@@ -7,10 +7,7 @@ __pycache__/
 *.py[codz]
 *$py.class
 All
-data/clean_database
-data/program_icons
-data/app.db-shm
-data/app.db-wal
+data/
 # C extensions
 *.so
 
@@ -30,6 +27,7 @@ var/
 wheels/
 share/python-wheels/
 *.egg-info/
+.idea/
 .installed.cfg
 *.egg
 MANIFEST

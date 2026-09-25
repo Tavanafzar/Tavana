@@ -7,7 +7,7 @@ from collections.abc import Callable
 from shutil import rmtree
 from PySide6.QtWidgets import QApplication
 
-from core.database import database
+from core.database import configuration_db
 from core.paths.paths import PROGRAM_ICONS_DIR, resource_path
 
 logger = logging.getLogger(__name__)
@@ -1049,7 +1049,7 @@ class TavanaCommands(WindowsCommands):
     def clear_search_history(cls) -> None:
         """تاریخچه‌ی تایپ را پاک می‌کند و برنامه را برای اعمال تغییر مجدداً راه‌اندازی می‌کند."""
         try:
-            database.clear_type_history()
+            configuration_db.clear_type_history()
             print("✅ Search history cleared")
 
             QApplication.quit()
@@ -1066,7 +1066,7 @@ class TavanaCommands(WindowsCommands):
     def clear_directories(cls) -> None:
         """کش مسیرها و آیکون‌های استخراج‌شده را پاک می‌کند و برنامه را برای اعمال تغییر مجدداً راه‌اندازی می‌کند."""
         try:
-            database.clear_directory_history()
+            configuration_db.clear_directory_history()
             rmtree(PROGRAM_ICONS_DIR, ignore_errors=True)
             print("✅ Directories is cleaned!")
 
@@ -1135,7 +1135,7 @@ def _load_commands(commands_data, handler):
 def load_windows_commands() -> dict[str, Callable]:
     """دستورات ویندوز را از دیتابیس بخوان و نگاشت کلیدواژه → تابع اجراکننده را برگردان."""
     try:
-        commands_data = database.get_windows_commands()
+        commands_data = configuration_db.get_windows_commands()
     except Exception as e:
         logger.error(f"Error loading windows commands: {e}")
         return {}
@@ -1145,7 +1145,7 @@ def load_windows_commands() -> dict[str, Callable]:
 def load_tavana_commands() -> dict[str, Callable]:
     """دستورات اختصاصی توانا را از دیتابیس بخوان و نگاشت کلیدواژه → تابع اجراکننده را برگردان."""
     try:
-        commands_data = database.get_tavana_commands()
+        commands_data = configuration_db.get_tavana_commands()
     except Exception as e:
         logger.error(f"Error loading tavana commands: {e}")
         return {}

@@ -2,7 +2,7 @@
 
 from typing import Optional
 
-from core.database import database
+from core.database import directories_db
 
 
 class HistoryManager:
@@ -17,7 +17,7 @@ class HistoryManager:
     def get_history_items(self) -> list[tuple[str, str, str]]:
         """آیتم‌های تاریخچه را به ترتیب جدیدترین تا قدیمی‌ترین برمی‌گرداند."""
         if self._cache is None:
-            self._cache = database.get_type_history(self.MAX_ITEMS)
+            self._cache = directories_db.get_type_history(self.MAX_ITEMS)
         return self._cache
 
     def add_to_history(self, text: str) -> None:
@@ -26,10 +26,10 @@ class HistoryManager:
         if not text or len(text) < 2:
             return
 
-        database.add_type_history(text, max_items=self.MAX_ITEMS)
+        directories_db.add_type_history(text, max_items=self.MAX_ITEMS)
         self._cache = None
 
     def clear_history(self) -> None:
         """کل تاریخچه را پاک می‌کند."""
-        database.clear_type_history()
+        directories_db.clear_type_history()
         self._cache = []

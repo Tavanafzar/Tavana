@@ -15,7 +15,7 @@ from PySide6.QtWidgets import QApplication, QCompleter, QFileIconProvider, QList
 
 from core.calculations.math_engine import evaluate_math_expression, is_math_expression
 from core.commands.commands import load_tavana_commands, load_windows_commands
-from core.database import database
+from core.database import configuration_db,directories_db
 from core.paths.paths import PROGRAM_ICONS_DIR, resource_path
 from core.utils.search_providers import handle_search_prefix
 from core.utils.text_utils import normalize_text
@@ -102,7 +102,7 @@ class MainWindow(QMainWindow):
         try:
             os.makedirs(self.PROGRAM_ICONS_DIR, exist_ok=True)
             self._icon_backfill_queue = list(
-                database.get_directories().items())
+                directories_db.get_directories().items())
         except Exception as e:
             print(f"خطا در آماده‌سازی صف بک‌فیل آیکون‌ها: {e}")
             return
@@ -249,7 +249,7 @@ class MainWindow(QMainWindow):
             )
 
             # Windows commands
-            windows_commands = database.get_windows_commands()
+            windows_commands = configuration_db.get_windows_commands()
 
             for cmd_key, command_data in windows_commands.items():
                 command_type = command_data["type"]
@@ -262,7 +262,7 @@ class MainWindow(QMainWindow):
                     ])
 
             # Tavana commands
-            for cmd_key in database.get_tavana_commands().keys():
+            for cmd_key in configuration_db.get_tavana_commands().keys():
                 suggestions.append([
                     cmd_key,
                     tavana_cmd_dark,
@@ -271,7 +271,7 @@ class MainWindow(QMainWindow):
                 ])
 
                 # Programs / directories
-            for dir_key in database.get_directories().keys():
+            for dir_key in directories_db.get_directories().keys():
                 display_name = dir_key
 
                 # Hide only executable extensions in the UI.
@@ -576,7 +576,7 @@ class MainWindow(QMainWindow):
         """تم را بین روشن و تیره جابه‌جا می‌کند و با انیمیشن محو، رابط کاربری را با تم جدید بازسازی می‌کند."""
         self.is_dark_theme = not self.is_dark_theme
         print(f"Theme changed: {'Dark' if self.is_dark_theme else 'Light'}")
-        database.write_app_info(f"{'Dark' if self.is_dark_theme else 'Light'}")
+        configuration_db.write_app_info(f"{'Dark' if self.is_dark_theme else 'Light'}")
         QApplication.quit()
         open_app = sys.executable
         subprocess.Popen([open_app] + sys.argv)

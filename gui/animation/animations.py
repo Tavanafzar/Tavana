@@ -9,8 +9,8 @@ from PySide6.QtCore import (
 )
 from PySide6.QtWidgets import QGraphicsOpacityEffect
 
-from core.database import database
-from core.database.database import DEFAULT_ANIMATION_SPEEDS
+from core.database import configuration_db
+from core.database.configuration_db import DEFAULT_ANIMATION_SPEEDS
 
 
 _animation_speeds = None
@@ -22,7 +22,7 @@ def _get_speeds():
 
     if _animation_speeds is None:
         try:
-            speeds = database.get_animations()
+            speeds = configuration_db.get_animations()
 
             _animation_speeds = (
                 speeds
