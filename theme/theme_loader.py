@@ -19,7 +19,7 @@ theme_state = theme_manager.get_system_theme()
 
 
 DARK_COLORS = {
-    "central_bg": "rgba(120,120,120,0.45)",
+    "central_bg": "rgba(80,80,80,0.45)",
 
     "search_frame_grad_start": "#18181b",
     "search_frame_grad_stop": "#000000",

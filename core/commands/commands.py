@@ -7,8 +7,8 @@ from collections.abc import Callable
 from shutil import rmtree
 from PySide6.QtWidgets import QApplication
 
-from core.database import configuration_db
-from core.paths.paths import PROGRAM_ICONS_DIR, resource_path
+from core.database import configuration_db, directories_db
+from core.paths.paths import PROGRAM_ICONS_DIR
 
 logger = logging.getLogger(__name__)
 
@@ -120,7 +120,7 @@ class WindowsCommands:
     def settings_system_display_advanced(cls) -> None:
         """تنظیمات نمایش را باز می‌کند."""
         cls._run('start ms-settings:display-advanced')
-        
+
     @classmethod
     def mouse_properties(cls) -> None:
         """ویژگی‌های ماوس را باز می‌کند."""
@@ -385,7 +385,7 @@ class WindowsCommands:
     def settings_system_sound_devices(cls) -> None:
         """تنظیمات صدا را باز می‌کند."""
         cls._run('start ms-settings:sound-devices')
-           
+
     @classmethod
     def settings_system_notifications(cls) -> None:
         """تنظیمات اعلان‌ها را باز می‌کند."""
@@ -595,6 +595,7 @@ class WindowsCommands:
     def settings_face_recognition(cls) -> None:
         """تنظیمات حریم خصوصی و امنیت را باز می‌کند."""
         cls._run('start ms-settings:signinoptions-launchfaceenrollment')
+
     @classmethod
     def settings_fingerprint_recognition(cls) -> None:
         """تنظیمات حریم خصوصی و امنیت را باز می‌کند."""
@@ -634,6 +635,7 @@ class WindowsCommands:
     def settings_ease_of_access_narrator(cls) -> None:
         """تنظیمات دسترسی‌پذیری را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-narrator')
+
     @classmethod
     def shutdown_windows(cls) -> None:
         """ویندوز را خاموش می‌کند."""
@@ -658,7 +660,7 @@ class WindowsCommands:
     def user_tmp_files(cls) -> None:
         """پوشه‌ی appdata\\roaming را در File Explorer باز می‌کند."""
         os.startfile(os.path.expandvars('%temp%'))
-                
+
     @classmethod
     def sleep_windows(cls) -> None:
         """ویندوز را به حالت خواب می‌برد."""
@@ -673,330 +675,275 @@ class WindowsCommands:
         """تنظیم مربوط به appsforwebsites را باز می‌کند."""
         cls._run('start ms-settings:appsforwebsites')
 
-
     @classmethod
     def settings_autoplay(cls) -> None:
         """تنظیم مربوط به autoplay را باز می‌کند."""
         cls._run('start ms-settings:autoplay')
-
 
     @classmethod
     def settings_camera(cls) -> None:
         """تنظیم مربوط به camera را باز می‌کند."""
         cls._run('start ms-settings:camera')
 
-
     @classmethod
     def settings_connected_devices(cls) -> None:
         """تنظیم مربوط به connecteddevices را باز می‌کند."""
         cls._run('start ms-settings:connecteddevices')
-
 
     @classmethod
     def settings_ease_of_access_audio(cls) -> None:
         """تنظیم مربوط به easeofaccess-audio را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-audio')
 
-
     @classmethod
     def settings_ease_of_access_closedcaptioning(cls) -> None:
         """تنظیم مربوط به easeofaccess-closedcaptioning را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-closedcaptioning')
-
 
     @classmethod
     def settings_ease_of_access_colorfilter(cls) -> None:
         """تنظیم مربوط به easeofaccess-colorfilter را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-colorfilter')
 
-
     @classmethod
     def settings_ease_of_access_eyecontrol(cls) -> None:
         """تنظیم مربوط به easeofaccess-eyecontrol را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-eyecontrol')
-
 
     @classmethod
     def settings_ease_of_access_highcontrast(cls) -> None:
         """تنظیم مربوط به easeofaccess-highcontrast را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-highcontrast')
 
-
     @classmethod
     def settings_ease_of_access_mouse(cls) -> None:
         """تنظیم مربوط به easeofaccess-mouse را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-mouse')
-
 
     @classmethod
     def settings_game_dvr(cls) -> None:
         """تنظیم مربوط به gaming-gamedvr را باز می‌کند."""
         cls._run('start ms-settings:gaming-gamedvr')
 
-
     @classmethod
     def settings_mobile_devices(cls) -> None:
         """تنظیم مربوط به mobile-devices را باز می‌کند."""
         cls._run('start ms-settings:mobile-devices')
-
 
     @classmethod
     def settings_network_advanced(cls) -> None:
         """تنظیم مربوط به network-advancedsettings را باز می‌کند."""
         cls._run('start ms-settings:network-advancedsettings')
 
-
     @classmethod
     def settings_network_cellular(cls) -> None:
         """تنظیم مربوط به network-cellular را باز می‌کند."""
         cls._run('start ms-settings:network-cellular')
-
 
     @classmethod
     def settings_network_dialup(cls) -> None:
         """تنظیم مربوط به network-dialup را باز می‌کند."""
         cls._run('start ms-settings:network-dialup')
 
-
     @classmethod
     def settings_offline_maps(cls) -> None:
         """تنظیم مربوط به maps را باز می‌کند."""
         cls._run('start ms-settings:maps')
-
 
     @classmethod
     def settings_pen(cls) -> None:
         """تنظیم مربوط به pen را باز می‌کند."""
         cls._run('start ms-settings:pen')
 
-
     @classmethod
     def settings_personalization_start(cls) -> None:
         """تنظیم مربوط به personalization-start را باز می‌کند."""
         cls._run('start ms-settings:personalization-start')
-
 
     @classmethod
     def settings_privacy_account_info(cls) -> None:
         """تنظیم مربوط به privacy-accountinfo را باز می‌کند."""
         cls._run('start ms-settings:privacy-accountinfo')
 
-
     @classmethod
     def settings_privacy_app_diagnostics(cls) -> None:
         """تنظیم مربوط به privacy-appdiagnostics را باز می‌کند."""
         cls._run('start ms-settings:privacy-appdiagnostics')
-
 
     @classmethod
     def settings_privacy_background_apps(cls) -> None:
         """تنظیم مربوط به privacy-backgroundapps را باز می‌کند."""
         cls._run('start ms-settings:privacy-backgroundapps')
 
-
     @classmethod
     def settings_privacy_calendar(cls) -> None:
         """تنظیم مربوط به privacy-calendar را باز می‌کند."""
         cls._run('start ms-settings:privacy-calendar')
-
 
     @classmethod
     def settings_privacy_call_history(cls) -> None:
         """تنظیم مربوط به privacy-callhistory را باز می‌کند."""
         cls._run('start ms-settings:privacy-callhistory')
 
-
     @classmethod
     def settings_privacy_contacts(cls) -> None:
         """تنظیم مربوط به privacy-contacts را باز می‌کند."""
         cls._run('start ms-settings:privacy-contacts')
-
 
     @classmethod
     def settings_privacy_diagnostics(cls) -> None:
         """تنظیم مربوط به privacy-feedback را باز می‌کند."""
         cls._run('start ms-settings:privacy-feedback')
 
-
     @classmethod
     def settings_privacy_documents(cls) -> None:
         """تنظیم مربوط به privacy-documents را باز می‌کند."""
         cls._run('start ms-settings:privacy-documents')
-
 
     @classmethod
     def settings_privacy_email(cls) -> None:
         """تنظیم مربوط به privacy-email را باز می‌کند."""
         cls._run('start ms-settings:privacy-email')
 
-
     @classmethod
     def settings_privacy_file_system(cls) -> None:
         """تنظیم مربوط به privacy-broadfilesystemaccess را باز می‌کند."""
         cls._run('start ms-settings:privacy-broadfilesystemaccess')
-
 
     @classmethod
     def settings_privacy_messaging(cls) -> None:
         """تنظیم مربوط به privacy-messaging را باز می‌کند."""
         cls._run('start ms-settings:privacy-messaging')
 
-
     @classmethod
     def settings_privacy_notifications(cls) -> None:
         """تنظیم مربوط به privacy-notifications را باز می‌کند."""
         cls._run('start ms-settings:privacy-notifications')
-
 
     @classmethod
     def settings_privacy_other_devices(cls) -> None:
         """تنظیم مربوط به privacy-customdevices را باز می‌کند."""
         cls._run('start ms-settings:privacy-customdevices')
 
-
     @classmethod
     def settings_privacy_pictures(cls) -> None:
         """تنظیم مربوط به privacy-pictures را باز می‌کند."""
         cls._run('start ms-settings:privacy-pictures')
-
 
     @classmethod
     def settings_privacy_radios(cls) -> None:
         """تنظیم مربوط به privacy-radios را باز می‌کند."""
         cls._run('start ms-settings:privacy-radios')
 
-
     @classmethod
     def settings_privacy_speech(cls) -> None:
         """تنظیم مربوط به privacy-speech را باز می‌کند."""
         cls._run('start ms-settings:privacy-speech')
-
 
     @classmethod
     def settings_privacy_tasks(cls) -> None:
         """تنظیم مربوط به privacy-tasks را باز می‌کند."""
         cls._run('start ms-settings:privacy-tasks')
 
-
     @classmethod
     def settings_privacy_videos(cls) -> None:
         """تنظیم مربوط به privacy-videos را باز می‌کند."""
         cls._run('start ms-settings:privacy-videos')
-
 
     @classmethod
     def settings_signin_dynamic_lock(cls) -> None:
         """تنظیم مربوط به signinoptions-dynamiclock را باز می‌کند."""
         cls._run('start ms-settings:signinoptions-dynamiclock')
 
-
     @classmethod
     def settings_signin_security_key(cls) -> None:
         """تنظیم مربوط به signinoptions-launchsecuritykeyenrollment را باز می‌کند."""
         cls._run('start ms-settings:signinoptions-launchsecuritykeyenrollment')
-
 
     @classmethod
     def settings_system_apps_volume(cls) -> None:
         """تنظیم مربوط به apps-volume را باز می‌کند."""
         cls._run('start ms-settings:apps-volume')
 
-
     @classmethod
     def settings_system_display_graphics(cls) -> None:
         """تنظیم مربوط به display-advancedgraphics را باز می‌کند."""
         cls._run('start ms-settings:display-advancedgraphics')
-
 
     @classmethod
     def settings_system_ease_of_access_display(cls) -> None:
         """تنظیم مربوط به easeofaccess-display را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-display')
 
-
     @classmethod
     def settings_system_ease_of_access_keyboard(cls) -> None:
         """تنظیم مربوط به easeofaccess-keyboard را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-keyboard')
-
 
     @classmethod
     def settings_system_ease_of_access_magnifier(cls) -> None:
         """تنظیم مربوط به easeofaccess-magnifier را باز می‌کند."""
         cls._run('start ms-settings:easeofaccess-magnifier')
 
-
     @classmethod
     def settings_system_emailandaccounts(cls) -> None:
         """تنظیم مربوط به emailandaccounts را باز می‌کند."""
         cls._run('start ms-settings:emailandaccounts')
-
 
     @classmethod
     def settings_system_focus_assist(cls) -> None:
         """تنظیم مربوط به quiethours را باز می‌کند."""
         cls._run('start ms-settings:quiethours')
 
-
     @classmethod
     def settings_system_nightlight(cls) -> None:
         """تنظیم مربوط به nightlight را باز می‌کند."""
         cls._run('start ms-settings:nightlight')
-
 
     @classmethod
     def settings_system_optionalfeatures(cls) -> None:
         """تنظیم مربوط به optionalfeatures را باز می‌کند."""
         cls._run('start ms-settings:optionalfeatures')
 
-
     @classmethod
     def settings_system_project(cls) -> None:
         """تنظیم مربوط به project را باز می‌کند."""
         cls._run('start ms-settings:project')
-
 
     @classmethod
     def settings_system_save_locations(cls) -> None:
         """تنظیم مربوط به savelocations را باز می‌کند."""
         cls._run('start ms-settings:savelocations')
 
-
     @classmethod
     def settings_system_speech(cls) -> None:
         """تنظیم مربوط به speech را باز می‌کند."""
         cls._run('start ms-settings:speech')
-
 
     @classmethod
     def settings_system_storage_policies(cls) -> None:
         """تنظیم مربوط به storagepolicies را باز می‌کند."""
         cls._run('start ms-settings:storagepolicies')
 
-
     @classmethod
     def settings_system_workplace(cls) -> None:
         """تنظیم مربوط به workplace را باز می‌کند."""
         cls._run('start ms-settings:workplace')
-
 
     @classmethod
     def settings_typing(cls) -> None:
         """تنظیم مربوط به typing را باز می‌کند."""
         cls._run('start ms-settings:typing')
 
-
     @classmethod
     def settings_video_playback(cls) -> None:
         """تنظیم مربوط به videoplayback را باز می‌کند."""
         cls._run('start ms-settings:videoplayback')
 
-
     @classmethod
     def settings_windowsupdate_history(cls) -> None:
         """تنظیم مربوط به windowsupdate-history را باز می‌کند."""
         cls._run('start ms-settings:windowsupdate-history')
-
 
     @classmethod
     def settings_windowsupdate_options(cls) -> None:
@@ -1007,8 +954,7 @@ class WindowsCommands:
     def file_explorer_options(cls) -> None:
         """تنظیم مربوط به windowsupdate-options را باز می‌کند."""
         cls._run('start control folders')
- 
- 
+
     @classmethod
     def Malware_Removal_Tool(cls) -> None:
         """تنظیم مربوط به windowsupdate-options را باز می‌کند."""
@@ -1017,24 +963,22 @@ class WindowsCommands:
     @classmethod
     def Windows_memory_checker(cls) -> None:
         """تنظیم مربوط به windowsupdate-options را باز می‌کند."""
-        cls._run('start mdsched')        
-
+        cls._run('start mdsched')
 
     @classmethod
     def admin_tools(cls) -> None:
         """تنظیم مربوط به windowsupdate-options را باز می‌کند."""
-        cls._run('start control admintools')     
+        cls._run('start control admintools')
 
     @classmethod
     def Bluetooth_Transfer_Wizard(cls) -> None:
         """تنظیم مربوط به windowsupdate-options را باز می‌کند."""
-        cls._run('start fsquirt') 
-                                   
+        cls._run('start fsquirt')
+
     @classmethod
     def settings_windowsupdate_restartoptions(cls) -> None:
         """تنظیم مربوط به windowsupdate-restartoptions را باز می‌کند."""
         cls._run('start ms-settings:windowsupdate-restartoptions')
-
 
     @classmethod
     def settings_xbox_networking(cls) -> None:
@@ -1049,7 +993,7 @@ class TavanaCommands(WindowsCommands):
     def clear_search_history(cls) -> None:
         """تاریخچه‌ی تایپ را پاک می‌کند و برنامه را برای اعمال تغییر مجدداً راه‌اندازی می‌کند."""
         try:
-            configuration_db.clear_type_history()
+            directories_db.clear_type_history()
             print("✅ Search history cleared")
 
             QApplication.quit()
@@ -1066,7 +1010,7 @@ class TavanaCommands(WindowsCommands):
     def clear_directories(cls) -> None:
         """کش مسیرها و آیکون‌های استخراج‌شده را پاک می‌کند و برنامه را برای اعمال تغییر مجدداً راه‌اندازی می‌کند."""
         try:
-            configuration_db.clear_directory_history()
+            directories_db.clear_directory_history()
             rmtree(PROGRAM_ICONS_DIR, ignore_errors=True)
             print("✅ Directories is cleaned!")
 
@@ -1084,36 +1028,6 @@ class TavanaCommands(WindowsCommands):
     def quit_from_app(cls) -> None:
         """از برنامه خارج می‌شود."""
         sys.exit(0)
-
-    @classmethod
-    def ask_ai(cls, question: str) -> str:
-        """سؤال کاربر را از طریق یک سرویس هوش مصنوعی سازگار با OpenAI می‌پرسد و پاسخ را برمی‌گرداند."""
-        api_key = os.environ.get("TAVANA_AI_API_KEY")
-        if not api_key:
-            logger.warning(
-                "TAVANA_AI_API_KEY تنظیم نشده؛ درخواست ask_ai نادیده گرفته شد.")
-            return "خطا: کلید API تنظیم نشده است (TAVANA_AI_API_KEY)."
-
-        try:
-            from openai import OpenAI
-        except ImportError:
-            logger.error("پکیج openai نصب نیست.")
-            return "خطا: پکیج openai نصب نشده است."
-
-        try:
-            client = OpenAI(
-                base_url=os.environ.get(
-                    "TAVANA_AI_BASE_URL", "https://api.gapgpt.app/v1"),
-                api_key=api_key,
-            )
-            response = client.chat.completions.create(
-                model=os.environ.get("TAVANA_AI_MODEL", "gemini-2.5-pro"),
-                messages=[{"role": "user", "content": question}],
-            )
-            return response.choices[0].message.content
-        except Exception as e:
-            logger.error(f"خطا در فراخوانی ask_ai: {e}")
-            return f"خطا در ارتباط با سرویس هوش مصنوعی: {e}"
 
 def _load_commands(commands_data, handler):
     commands = {}
@@ -1150,3 +1064,4 @@ def load_tavana_commands() -> dict[str, Callable]:
         logger.error(f"Error loading tavana commands: {e}")
         return {}
     return _load_commands(commands_data, TavanaCommands())
+ 

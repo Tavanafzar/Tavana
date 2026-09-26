@@ -108,6 +108,7 @@ class Ui_MainWindow:
         """قاب و چیدمان نوار جستجو را می‌سازد."""
         self.searchArea = QFrame(self.mainFrame)
         self.searchArea.setObjectName("searchArea")
+       #     self.searchArea.setStyleSheet("background: rgb(55, 55, 55);")
         self.searchArea.setMinimumSize(QSize(0, 78))
         self.searchArea.setMaximumSize(QSize(16777215, 78))
         self.searchArea.setFrameShape(QFrame.Shape.NoFrame)
@@ -165,7 +166,7 @@ class Ui_MainWindow:
         self.input_mode_text.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         #self.input_mode_text.setVisible(False)
         set_font(self.input_mode_text, "Bold", 10)
-        
+
         self.submitBtn = QPushButton()
         self.submitBtn.setObjectName("submitBtn")
         self.submitBtn.setMinimumSize(QSize(40, 40))
@@ -208,8 +209,9 @@ class Ui_MainWindow:
         """ناحیه‌ی پایین پنجره شامل دکمه‌های حالت جستجو و برچسب نسخه را می‌سازد."""
         self.bottomArea = QFrame(self.mainFrame)
         self.bottomArea.setObjectName("bottomArea")
+        #self.bottomArea.setStyleSheet("background-color: rgb(5, 5, 5);")
         self.bottomArea.setFrameShape(QFrame.Shape.NoFrame)
-        self.bottomArea.setMinimumSize(QSize(1900, 300))
+        #self.bottomArea.setMinimumSize(QSize(1900, 300))
 
         self.verticalLayout_4 = QVBoxLayout(self.bottomArea)
         self.verticalLayout_4.setSpacing(0)
@@ -277,7 +279,7 @@ class Ui_MainWindow:
             else:
                 btn = QRadioButton(text, self.modeFrame)
                 btn.setObjectName(id_name)
-                
+
                 btn.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
                 btn.setFixedSize(width, height)
                 btn.setCheckable(True)

@@ -11,7 +11,7 @@ from core.paths.paths import app_path, resource_path
 
 DB_PATH = app_path("data", "configuration.db")
 _LEGACY_DB_PATH = resource_path("data", "configuration.db")
-#LEGACY_JSON_PATH = app_path("data", "data.json")
+
 
 DEFAULT_ANIMATION_SPEEDS = [200, 150]
 
