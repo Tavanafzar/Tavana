@@ -7,7 +7,7 @@
 **Smart Windows Assistant**
 A fast and intelligent command launcher for Windows 10 and Windows 11.
 
-![Version](https://img.shields.io/badge/Version-v1.0.3-1f6feb)
+![Version](https://img.shields.io/badge/Version-v1.0.4-1f6feb)
 ![Python](https://img.shields.io/badge/Python-3.14.7-d4a72c)
 ![License](https://img.shields.io/badge/License-Tavana_License-238636)
 
